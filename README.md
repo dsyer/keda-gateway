@@ -28,3 +28,49 @@ Forwarding from [::1]:8080 -> 8080
 $ curl localhost:8080/app/
 NOW: 2024-01-26 11:36:18.543102411 +0000 UTC m=+6334.579665868
 ```
+
+Try out actuator grpc:
+
+```
+$ grpcurl -d '{"name":"app"}' -plaintext localhost:9090 externalscaler.ExternalScaler.IsActive
+{
+  "result": true
+}
+```
+
+and use the actuator endpoints to toggle the active flag:
+
+```
+$ curl localhost:8080/actuator/scaler?name=foo
+true
+$ curl -H "Content-Type: application/json" localhost:8080/actuator/scaler -d '{"name": "foo"}'
+$ curl localhost:8080/actuator/scaler?name=foo
+false
+```
+
+and link to grpc `IsActive`:
+
+```
+$ grpcurl -d '{"name":"app"}' -plaintext localhost:9090 externalscaler.ExternalScaler.IsActive
+{}
+$ curl -H "Content-Type: application/json" localhost:8080/actuator/scaler -d '{"name": "foo"}'
+$ grpcurl -d '{"name":"app"}' -plaintext localhost:9090 externalscaler.ExternalScaler.IsActive
+{
+  "result": true
+}
+```
+
+and `StreamIsActive`:
+
+```
+$ grpcurl -d '{"name":"app"}' -plaintext localhost:9090 externalscaler.ExternalScaler.IsActive
+{
+  "result": true
+}
+```
+
+blocks until you toggle the active flag and then returns:
+
+```
+{}
+```
