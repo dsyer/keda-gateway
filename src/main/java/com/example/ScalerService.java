@@ -6,4 +6,6 @@ public interface ScalerService {
 
 	void setActive(String name, boolean active);
 
+	long getMetric(String name);
+
 }

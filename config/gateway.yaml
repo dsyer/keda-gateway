@@ -17,9 +17,6 @@ spec:
       containers:
       - name: gateway
         image: localhost:5000/gateway:latest
-        env:
-          - name: DEBUG
-            value: "true"
         ports:
         - containerPort: 8080
           name: http

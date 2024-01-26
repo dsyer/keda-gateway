@@ -104,3 +104,28 @@ gateway-776f5fd554-4hp45   1/1     Running   0        14m
 ```
 
 When you flip the "active" flag the app will scale down to zero, and then scale back up when you toggle back.
+
+## Driving the Scaler
+
+```
+$ watch -n 1 kubectl get deployment
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+app       0/0     0            0           7h45m
+gateway   1/1     1            1           3h37m
+```
+
+Then throw some load on the server:
+
+```
+$ ab -c 10 -n 20000 http://localhost:8080/app
+```
+
+and watch the deployment scale up:
+
+```
+NAME      READY   UP-TO-DATE   AVAILABLE   AGE
+app       3/3     3            3           7h46m
+gateway   1/1     1            1           3h38m
+```
+
+and back to zero when you stop the load.

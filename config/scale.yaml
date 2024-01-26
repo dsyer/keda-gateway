@@ -1,0 +1,16 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: appscale
+spec:
+  scaleTargetRef:
+    name: app
+  pollingInterval:  1
+  cooldownPeriod:   3
+  minReplicaCount:  0
+  maxReplicaCount:  3
+  triggers:
+  - type: external
+    metadata:
+      scalerAddress: gateway.default:9090
+      threshold: "2"

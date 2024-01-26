@@ -1,8 +1,5 @@
 package com.example;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class SimpleScalerService implements ScalerService {
 
 	private boolean active = true;
@@ -17,4 +14,8 @@ public class SimpleScalerService implements ScalerService {
 		this.active = active;
 	}
 
+	@Override
+	public long getMetric(String name) {
+		return active ? 1 : 0;
+	}
 }
