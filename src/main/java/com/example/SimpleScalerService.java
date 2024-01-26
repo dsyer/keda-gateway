@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SimpleScalerService implements ScalerService {
-	
+
 	private boolean active = true;
 
 	@Override

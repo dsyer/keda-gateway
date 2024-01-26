@@ -36,7 +36,8 @@ public class GrpcServerService extends ExternalScalerImplBase {
 		while (true) {
 			try {
 				Thread.sleep(1000);
-			} catch (InterruptedException e) {
+			}
+			catch (InterruptedException e) {
 				responseObserver.onError(e);
 				Thread.currentThread().interrupt();
 			}
@@ -51,15 +52,17 @@ public class GrpcServerService extends ExternalScalerImplBase {
 	@Override
 	public void getMetricSpec(ScaledObjectRef request, StreamObserver<GetMetricSpecResponse> responseObserver) {
 		responseObserver.onNext(GetMetricSpecResponse.newBuilder()
-				.addMetricSpecs(MetricSpec.newBuilder().setMetricName("threshold").setTargetSize(3)).build());
+			.addMetricSpecs(MetricSpec.newBuilder().setMetricName("threshold").setTargetSize(3))
+			.build());
 		responseObserver.onCompleted();
 	}
 
 	@Override
 	public void getMetrics(GetMetricsRequest request, StreamObserver<GetMetricsResponse> responseObserver) {
 		responseObserver.onNext(GetMetricsResponse.newBuilder()
-				.addMetricValues(MetricValue.newBuilder().setMetricName("threshold").setMetricValue(1).build())
-				.build());
+			.addMetricValues(MetricValue.newBuilder().setMetricName("threshold").setMetricValue(1).build())
+			.build());
 		responseObserver.onCompleted();
 	}
+
 }

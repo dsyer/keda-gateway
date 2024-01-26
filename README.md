@@ -1,4 +1,6 @@
-An experiment with KEDA. Version 2.13.0 is already downloaded here:
+## Install KEDA and Demo App
+
+Version 2.13.0 is already downloaded here:
 
 ```
 $ kubectl apply --server-side -f config/keda.yaml
@@ -10,7 +12,14 @@ Basic demo app from Kubernetes examples:
 $ kubectl apply -f config/app.yaml
 ```
 
-Gateway app:
+You can curl it on port 80. It returns the current time:
+
+```
+$ curl localhost:8080/app/
+NOW: 2024-01-26 11:36:18.543102411 +0000 UTC m=+6334.579665868
+```
+
+# Gateway App
 
 ```
 $ mvn spring-boot:build-image
@@ -29,7 +38,9 @@ $ curl localhost:8080/app/
 NOW: 2024-01-26 11:36:18.543102411 +0000 UTC m=+6334.579665868
 ```
 
-Try out actuator grpc:
+## Actuator and gRPC Endpoints
+
+Run the app locally (or port forward into the cluster) and try out grpc:
 
 ```
 $ grpcurl -d '{"name":"app"}' -plaintext localhost:9090 externalscaler.ExternalScaler.IsActive
@@ -74,3 +85,22 @@ blocks until you toggle the active flag and then returns:
 ```
 {}
 ```
+
+## KEDA scaling
+
+Add the scaled object:
+
+```
+$ kubectl apply -f config/scale.yaml
+```
+
+and watch the pods:
+
+```
+$ watch kubectl get pods
+NAME                       READY   STATUS    RESTARTS AGE
+app-847f979465-m6n29       1/1     Running   0        8m54s
+gateway-776f5fd554-4hp45   1/1     Running   0        14m
+```
+
+When you flip the "active" flag the app will scale down to zero, and then scale back up when you toggle back.

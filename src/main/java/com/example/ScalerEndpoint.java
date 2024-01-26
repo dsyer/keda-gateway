@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Endpoint(id = "scaler")
 public class ScalerEndpoint {
-	
+
 	private final ScalerService scaler;
 
 	ScalerEndpoint(ScalerService scaler) {
