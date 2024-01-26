@@ -29,6 +29,8 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class GatewayApplication {
 
+	private String app = "http://app";
+
 	private String dates = "https://date.nager.at";
 
 	private String wizards = "https://wizard-world-api.herokuapp.com";
@@ -40,6 +42,7 @@ public class GatewayApplication {
 	@Bean
 	RouteLocator gateway(RouteLocatorBuilder rlb) {
 		return rlb.routes()
+			.route(r -> r.path("/app/**").filters(f -> f.stripPrefix(1)).uri(app))
 			.route(r -> r.path("/dates/**").filters(f -> f.stripPrefix(1).prefixPath("/api/v3")).uri(dates))
 			.route(r -> r.path("/wizards/**").filters(f -> f.stripPrefix(1)).uri(wizards))
 			.build();

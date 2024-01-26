@@ -25,8 +25,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
-		properties = "spring.openapi.base.info.description=Gateway API In Test")
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, properties = "grpc.server.port=9371")
 public class GatewayApplicationTests {
 
 	@Autowired
@@ -41,8 +40,6 @@ public class GatewayApplicationTests {
 
 	public static void main(String[] args) {
 		System.setProperty("spring.main.cloud-platform", "kubernetes");
-		System.setProperty("management.endpoint.health.probes.add-additional-paths", "true");
-		System.setProperty("management.health.probes.enabled", "true");
 		SpringApplication.run(GatewayApplication.class, args);
 	}
 

@@ -6,6 +6,8 @@ management:
   endpoint:
     health:
       show-details: always
+      probes:
+        add-additional-paths: true
     env:
       show-values: always
     info:
