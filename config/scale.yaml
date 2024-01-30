@@ -3,6 +3,8 @@ kind: ScaledObject
 metadata:
   name: appscale
 spec:
+  advanced:
+    restoreToOriginalReplicaCount: true
   scaleTargetRef:
     name: app
   pollingInterval:  1
