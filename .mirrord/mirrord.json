@@ -6,5 +6,8 @@
         },
         "fs": "read",
         "env": true
+    },
+    "agent": {
+        "startup_timeout": 200
     }
 }
