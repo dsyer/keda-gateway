@@ -32,8 +32,7 @@ import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
 /**
- * Gateway application to use for testing, aggregates 2 public APIs from the
- * internet and
+ * Gateway application to use for testing, aggregates 2 public APIs from the internet and
  * serves them up through a gateway. Run from the IDE or command line with
  * <code>./mvnw spring-boot:test-run</code>.
  */
@@ -60,10 +59,10 @@ public class GatewayApplication {
 	@Bean
 	RouteLocator gateway(RouteLocatorBuilder rlb) {
 		return rlb.routes()
-				.route(r -> r.path("/app/**").filters(f -> f.stripPrefix(1).filter(scaler)).uri(app))
-				.route(r -> r.path("/dates/**").filters(f -> f.stripPrefix(1).prefixPath("/api/v3")).uri(dates))
-				.route(r -> r.path("/wizards/**").filters(f -> f.stripPrefix(1)).uri(wizards))
-				.build();
+			.route(r -> r.path("/app/**").filters(f -> f.stripPrefix(1).filter(scaler)).uri(app))
+			.route(r -> r.path("/dates/**").filters(f -> f.stripPrefix(1).prefixPath("/api/v3")).uri(dates))
+			.route(r -> r.path("/wizards/**").filters(f -> f.stripPrefix(1)).uri(wizards))
+			.build();
 	}
 
 }

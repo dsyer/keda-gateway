@@ -18,4 +18,5 @@ public class SimpleScalerService implements ScalerService {
 	public long getMetric(String name) {
 		return active ? 1 : 0;
 	}
+
 }
