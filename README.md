@@ -40,7 +40,7 @@ NOW: 2024-01-26 11:36:18.543102411 +0000 UTC m=+6334.579665868
 
 ## Actuator and gRPC Endpoints
 
-Run the app locally (or port forward into the cluster) and try out grpc:
+Run the gateway locally (or port forward into the cluster) and try out grpc:
 
 ```
 $ grpcurl -d '{"name":"app"}' -plaintext localhost:9090 externalscaler.ExternalScaler.IsActive
@@ -74,13 +74,13 @@ $ grpcurl -d '{"name":"app"}' -plaintext localhost:9090 externalscaler.ExternalS
 and `StreamIsActive`:
 
 ```
-$ grpcurl -d '{"name":"app"}' -plaintext localhost:9090 externalscaler.ExternalScaler.IsActive
+$ grpcurl -d '{"name":"app"}' -plaintext localhost:9090 externalscaler.ExternalScaler.StreamIsActive
 {
   "result": true
 }
 ```
 
-blocks until you toggle the active flag and then returns:
+blocks until you toggle the active flag and then continues:
 
 ```
 {}

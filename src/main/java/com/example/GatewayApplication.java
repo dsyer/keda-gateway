@@ -89,7 +89,7 @@ class RequestCountingFilter implements GatewayFilter, ScalerService {
 
 	@Override
 	public boolean isActive(String name) {
-		return active && count.get() > 0;
+		return active || count.get() > 0;
 	}
 
 	@Override

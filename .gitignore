@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 package*.json
 node_modules/
+discovery.log
 
 ### STS ###
 .apt_generated
