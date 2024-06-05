@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: gateway
-        image: localhost:5000/gateway:latest
+        image: localhost:5000/keda-gateway:latest
         ports:
         - containerPort: 8080
           name: http

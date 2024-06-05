@@ -71,7 +71,7 @@ class RequestCountingFilter implements GatewayFilter, ScalerService {
 
 	private AtomicInteger count = new AtomicInteger();
 
-	private volatile boolean active = true;
+	private volatile boolean active = false;
 
 	private GatewayFilter filter;
 
