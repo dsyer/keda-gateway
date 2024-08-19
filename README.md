@@ -15,7 +15,7 @@ $ kubectl apply -f config/app.yaml
 You can curl it on port 80. It returns the current time:
 
 ```
-$ kubectl port-forward services/podinfo 8080:80
+$ kubectl port-forward services/app 8080:80
 $ curl localhost:8080/
 NOW: 2024-01-26 11:36:18.543102411 +0000 UTC m=+6334.579665868
 ```
